@@ -1,3 +1,19 @@
-{{define "yield"}}
-<h1>Repo</h1>
-{{end}}
+{{ define "yield" }}
+  <div class="center">
+    <form action="/" method="POST">
+      <div class="form-group row">
+        <div class="col-md-8 offset-md-2">
+        <input 
+          type="text"
+          class="form-control text-center"
+          id="username" name="username" placeholder="Enter Github Username">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+          <button type="submit" class="btn btn-primary">RepoMe</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{{ end }}
