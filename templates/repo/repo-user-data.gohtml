@@ -1,29 +1,29 @@
 {{define "repo-user-data"}}
-  {{if .Name }}
+  {{if .UserData.Name }}
     <div class="row">
       <div class="col-md-5">
         <div class="card mb-3">
-          <h3 class="card-header">{{ .Name }}</h3>
-          <img class="rounded-circle git-image" src="{{.AvatarURL}}" alt="Card image">
-          {{if .Bio}}
+          <h3 class="card-header">{{ .UserData.Name }}</h3>
+          <img class="rounded-circle git-image" src="{{.UserData.AvatarURL}}" alt="Card image">
+          {{if .UserData.Bio}}
             <div class="card-body">
-              <p class="card-text">{{.Bio}}</p>
+              <p class="card-text">{{.UserData.Bio}}</p>
             </div>
           {{end}}
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">UserName: @{{.Login}}</li>
-            {{if .Company}}
-              <li class="list-group-item">Company: {{.Company}}</li>
+            <li class="list-group-item">UserName: @{{.UserData.Login}}</li>
+            {{if .UserData.Company}}
+              <li class="list-group-item">Company: {{.UserData.Company}}</li>
             {{end}}
-            {{if .Email}}
-            <li class="list-group-item">Email: {{.Email}}</li>
+            {{if .UserData.Email}}
+            <li class="list-group-item">Email: {{.UserData.Email}}</li>
             {{end}}
-            <li class="list-group-item">Public Repositories: {{.PublicRepos}}</li>
-            {{if .Hireable}}
-              <li class="list-group-item">Hireable: {{.Hireable}}</li>
+            <li class="list-group-item">Public Repositories: {{.UserData.PublicRepos}}</li>
+            {{if .UserData.Hireable}}
+              <li class="list-group-item">Hireable: {{.UserData.Hireable}}</li>
             {{end}}
-            {{if .Location}}
-              <li class="list-group-item">Location: {{.Location }}</li>
+            {{if .UserData.Location}}
+              <li class="list-group-item">Location: {{.UserData.Location }}</li>
             {{end}}
           </ul>
           <div class="card-body">
@@ -32,6 +32,27 @@
         </div>
       </div>
       <div class="col-md-7">
+        {{if .RepoData}}
+          <h5>User Repositories</h5>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Private</th>
+              </tr>
+            </thead>
+            {{range .RepoData}}
+              <tr>
+              <th><a href="{{.HTMLURL}}" target="_blank">{{.Name}}</a></th>
+              <td>{{.FullName}}</td>
+              <td>{{.Private}}</td>
+            </tr>
+            {{end}}
+          </table>
+        {{else}}
+          <h5>Hmm... @{{.UserData.Login}} does not have any repositories at the moment</h5>
+        {{end}}
       </div>
     </div>
   {{end}}
