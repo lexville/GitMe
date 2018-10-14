@@ -47,6 +47,7 @@ func (rc *Repocontroller) HomeHandler(w http.ResponseWriter, r *http.Request) {
 //
 // GET: /user
 func (rc *Repocontroller) SearchUserHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
 	username := r.FormValue("username")
 	http.Redirect(w, r, "/user/"+username, http.StatusSeeOther)
 }
