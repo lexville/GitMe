@@ -43,7 +43,7 @@ func (rc *Repocontroller) HomeHandler(w http.ResponseWriter, r *http.Request) {
 // POST: /
 func (rc *Repocontroller) PostUserHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
-	http.Redirect(w, r, "/user/ "+username, http.StatusSeeOther)
+	http.Redirect(w, r, "/user/"+username, http.StatusSeeOther)
 }
 
 type UserNotFound struct {
