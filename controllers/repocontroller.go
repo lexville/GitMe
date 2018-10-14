@@ -27,6 +27,7 @@ func AddViewTemplates() *Repocontroller {
 		RepoView: view.AddTempateFiles(
 			"base",
 			"templates/repo/user-repo.gohtml",
+			"templates/repo/not-found-user.gohtml",
 		),
 	}
 }
@@ -46,6 +47,8 @@ func (rc *Repocontroller) PostUserHandler(w http.ResponseWriter, r *http.Request
 	http.Redirect(w, r, "/user/"+username, http.StatusSeeOther)
 }
 
+// UserNotFound contains the error type
+// and message for when a user cannot be found
 type UserNotFound struct {
 	ErrorType string
 	Message   string
@@ -56,7 +59,8 @@ type UserNotFound struct {
 // GET: /user/:username
 func (rc *Repocontroller) GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	username := mux.Vars(r)["username"]
-	response := apiCall(username)
+	getUserURL := "https://api.github.com/users/" + username
+	response := apiCall(getUserURL, username)
 	defer response.Body.Close()
 	if response.StatusCode == 404 {
 		UserNotFound := UserNotFound{
@@ -69,8 +73,8 @@ func (rc *Repocontroller) GetUserHandler(w http.ResponseWriter, r *http.Request)
 	fmt.Fprint(w, username)
 }
 
-func apiCall(username string) *http.Response {
-	response, err := http.Get("https://api.github.com/users/" + username)
+func apiCall(theURL string, username string) *http.Response {
+	response, err := http.Get(theURL)
 	if err != nil {
 		log.Fatal("Unable to make the request: ", err)
 	}
