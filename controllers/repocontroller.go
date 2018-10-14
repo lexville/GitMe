@@ -39,10 +39,11 @@ func (rc *Repocontroller) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	rc.HomeView.Render(w, nil)
 }
 
-// PostUserHandler is responsible for the home view
+// SearchUserHandler is responsible for searching
+// a user
 //
-// POST: /
-func (rc *Repocontroller) PostUserHandler(w http.ResponseWriter, r *http.Request) {
+// GET: /user
+func (rc *Repocontroller) SearchUserHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	http.Redirect(w, r, "/user/"+username, http.StatusSeeOther)
 }
@@ -54,7 +55,7 @@ type UserNotFound struct {
 	Message   string
 }
 
-// GetUserHandler is responsible for the home view
+// GetUserHandler is responsible for getting the user data
 //
 // GET: /user/:username
 func (rc *Repocontroller) GetUserHandler(w http.ResponseWriter, r *http.Request) {
