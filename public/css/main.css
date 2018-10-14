@@ -3,7 +3,7 @@
   margin-top: 100px;
   padding-bottom: 10px;
 }
-
+/* Search form style */
 .center{
   position:absolute;
   top:35%;
@@ -13,4 +13,10 @@
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   width: -webkit-fill-available;
+}
+/* Github avatar image style */
+.git-image {
+  width: 300px;
+  height:auto;
+  margin:auto;
 }

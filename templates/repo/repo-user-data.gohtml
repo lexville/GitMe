@@ -1,0 +1,38 @@
+{{define "repo-user-data"}}
+  {{if .Name }}
+    <div class="row">
+      <div class="col-md-5">
+        <div class="card mb-3">
+          <h3 class="card-header">{{ .Name }}</h3>
+          <img class="rounded-circle git-image" src="{{.AvatarURL}}" alt="Card image">
+          {{if .Bio}}
+            <div class="card-body">
+              <p class="card-text">{{.Bio}}</p>
+            </div>
+          {{end}}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">UserName: @{{.Login}}</li>
+            {{if .Company}}
+              <li class="list-group-item">Company: {{.Company}}</li>
+            {{end}}
+            {{if .Email}}
+            <li class="list-group-item">Email: {{.Email}}</li>
+            {{end}}
+            <li class="list-group-item">Public Repositories: {{.PublicRepos}}</li>
+            {{if .Hireable}}
+              <li class="list-group-item">Hireable: {{.Hireable}}</li>
+            {{end}}
+            {{if .Location}}
+              <li class="list-group-item">Location: {{.Location }}</li>
+            {{end}}
+          </ul>
+          <div class="card-body">
+            <a href="/" class="card-link">Go Back!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+      </div>
+    </div>
+  {{end}}
+{{end}}
